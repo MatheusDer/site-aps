@@ -6,7 +6,7 @@ function Login() {
   const entradaEmail = useRef();
   const entradaSenha = useRef();
 
-  function submitFormHandler(event) {
+  function submitLoginHandler(event) {
     event.preventDefault();
 
     const email = entradaEmail.current.value;
@@ -15,21 +15,6 @@ function Login() {
     fetch(`/api/usuario/${email}/${senha}`)
       .then((response) => response.json())
       .then((data) => setUsuario(data.usuario));
-    // Create user logic
-    // const email = entradaEmail.current.value;
-    // const senha = entradaSenha.current.value;
-
-    // const reqBody = { email: email, senha: senha };
-
-    // fetch(`/api/usuario`, {
-    //   method: "POST",
-    //   body: JSON.stringify(reqBody),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
   }
 
   return (
@@ -39,8 +24,9 @@ function Login() {
           <Card body className="p-4 shadow-lg">
             <Card.Title>
               <h1>Site APS</h1>
+              <h2 className="mt-5">Entrar</h2>
             </Card.Title>
-            <Form className="mt-5" onSubmit={submitFormHandler} method="GET">
+            <Form className="mt-4" onSubmit={submitLoginHandler} method="GET">
               <Form.Group className="mb-3" controlId="email">
                 <Form.Label>Endereco de Email</Form.Label>
                 <Form.Control
@@ -71,16 +57,11 @@ function Login() {
               </div>
             </Form>
             <Card.Text className="mt-5">
-              Nao possui uma conta? <Link href="#">Cadastre-se</Link>
+              Nao possui uma conta? <Link href="/cadastro">Cadastre-se</Link>
             </Card.Text>
           </Card>
         </Col>
       </Row>
-      <ul>
-        {loadedUsuario.map((usuario) => (
-          <li key={usuario.id}>Logado</li>
-        ))}
-      </ul>
     </Container>
   );
 }
