@@ -8,3 +8,8 @@ export function getArquivoUsuario() {
 export function getDadosUsuario(path) {
   return JSON.parse(fs.readFileSync(path));
 }
+
+export function getUsuarioPorId(id) {
+  const usuarios = getDadosUsuario(getArquivoUsuario());
+  return usuarios.filter((u) => u.id == id)[0];
+}
