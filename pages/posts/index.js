@@ -1,7 +1,14 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import NavbarLayout from "../../components/layout/navbar";
+import { useRouter } from "next/router";
 
 function PostsHomePage() {
+  const router = useRouter();
+  useEffect(() => {
+    if (router.query.id == undefined) {
+      router.push("/");
+    }
+  }, []);
   return (
     <Fragment>
       <NavbarLayout />

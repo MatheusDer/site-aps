@@ -28,10 +28,11 @@ function Login() {
         if (data.valido == true) {
           router.push({
             pathname: "/posts",
-            query: data.usuario,
+            query: { id: data.usuario[0].id },
           });
+        } else {
+          setUsuarioValido(false);
         }
-        setUsuarioValido(false);
       });
   }
 
