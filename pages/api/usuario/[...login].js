@@ -11,7 +11,12 @@ function handler(req, res) {
     (usuario) => usuario.email == email && usuario.senha == senha
   );
 
-  res.status(200).json({ usuario: usuario });
+  let valido = false;
+  if (usuario.length === 1) {
+    valido = true;
+  }
+
+  res.status(200).json({ usuario: usuario, valido: valido });
 }
 
 export default handler;

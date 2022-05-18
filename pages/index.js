@@ -1,10 +1,20 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { Card, Button, Container, Form, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Container,
+  Form,
+  Row,
+  Col,
+  Alert,
+} from "react-bootstrap";
 function Login() {
-  const [loadedUsuario, setUsuario] = useState([]);
+  const router = useRouter();
   const entradaEmail = useRef();
   const entradaSenha = useRef();
+  const [usuarioValido, setUsuarioValido] = useState(true);
 
   function submitLoginHandler(event) {
     event.preventDefault();
@@ -14,13 +24,24 @@ function Login() {
 
     fetch(`/api/usuario/${email}/${senha}`)
       .then((response) => response.json())
-      .then((data) => setUsuario(data.usuario));
+      .then((data) => {
+        if (data.valido == true) {
+          router.push({
+            pathname: "/posts",
+            query: data.usuario,
+          });
+        }
+        setUsuarioValido(false);
+      });
   }
 
   return (
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col xl={6}>
+          {!usuarioValido && (
+            <Alert variant="danger">Email ou Senha Incorretos!</Alert>
+          )}
           <Card body className="p-4 shadow-lg">
             <Card.Title>
               <h1>Site APS</h1>
@@ -33,6 +54,7 @@ function Login() {
                   type="email"
                   placeholder="nome@email.com"
                   ref={entradaEmail}
+                  required
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="senha">
@@ -41,6 +63,7 @@ function Login() {
                   type="password"
                   placeholder="*******"
                   ref={entradaSenha}
+                  required
                 />
                 <Form.Text className="text-muted">
                   Voce nao deve compartilhar sua senha!
