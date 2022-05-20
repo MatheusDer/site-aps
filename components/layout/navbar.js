@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { Container, Navbar, Nav } from "react-bootstrap";
 
-function NavbarLayout() {
+function NavbarLayout(props) {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -8,18 +9,18 @@ function NavbarLayout() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/posts" className="me-4">
-              Home
-            </Nav.Link>
-            <Nav.Link href="/usuario" className="me-4">
-              Profile
-            </Nav.Link>
-            <Nav.Link href="/criar-post" className="me-4">
-              Criar Post
-            </Nav.Link>
-            <Nav.Link href="/sobre" className="me-4">
-              Sobre
-            </Nav.Link>
+            <Link href="/posts">
+              <a className="me-4 nav-link">Home</a>
+            </Link>
+            <Link href={`/usuario/${props.idUsuario}`}>
+              <a className="me-4 nav-link">Profile</a>
+            </Link>
+            <Link href="/criar-post">
+              <a className="me-4 nav-link">Criar Post</a>
+            </Link>
+            <Link href="/sobre">
+              <a className="me-4 nav-link">Sobre</a>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
