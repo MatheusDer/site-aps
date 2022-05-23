@@ -15,7 +15,7 @@ function NavbarLayout(props) {
             <Link href={`/usuario/${props.idUsuario}`}>
               <a className="me-4 nav-link">Profile</a>
             </Link>
-            <Link href="/criar-post">
+            <Link href={`/criar-post/${props.idUsuario}`}>
               <a className="me-4 nav-link">Criar Post</a>
             </Link>
             <Link href="/sobre">
