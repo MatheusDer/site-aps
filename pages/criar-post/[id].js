@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import { Fragment, useRef } from "react";
-import { Link } from "next/link";
+import { Fragment, useRef, useState } from "react";
 import {
   Container,
   Card,
@@ -18,7 +17,27 @@ function CreatePost() {
 
   const entradaDescricao = useRef();
   const entradaImagem = useRef();
-  function submitCriarPostHandler() {}
+
+  function submitCriarPostHandler(event) {
+    event.preventDefault();
+
+    const descricao = entradaDescricao.current.value;
+    const imagem = entradaImagem.current.value;
+
+    const reqBody = {
+      imagem: imagem,
+      descricao: descricao,
+      tenantId: router.query.id,
+    };
+
+    fetch("/api/post", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+  }
   return (
     <Fragment>
       <NavbarLayout idUsuario={idUsuario} />
@@ -41,13 +60,8 @@ function CreatePost() {
                   />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="imagem">
-                  <Form.Label>Imagem</Form.Label>
-                  <Form.Control
-                    type="file"
-                    accept="image/png, image/jpeg, image/jpg"
-                    ref={entradaImagem}
-                    required
-                  />
+                  <Form.Label>Link da Imagem</Form.Label>
+                  <Form.Control type="text" ref={entradaImagem} required />
                 </Form.Group>
                 <div className="text-center">
                   <Button

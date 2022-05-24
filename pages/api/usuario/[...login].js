@@ -1,4 +1,7 @@
-import { getArquivoUsuario, getDadosUsuario } from "../../../helpers/api-utils";
+import {
+  getArquivoUsuario,
+  getDadosUsuario,
+} from "../../../helpers/usuario/api-utils";
 
 function handler(req, res) {
   const email = req.query.login[0];

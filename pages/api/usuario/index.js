@@ -1,4 +1,7 @@
-import { getArquivoUsuario, getDadosUsuario } from "../../../helpers/api-utils";
+import {
+  getArquivoUsuario,
+  getDadosUsuario,
+} from "../../../helpers/usuario/api-utils";
 import fs from "fs";
 
 function handler(req, res) {
