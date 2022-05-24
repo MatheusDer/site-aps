@@ -37,6 +37,11 @@ function CreatePost() {
         "Content-type": "application/json",
       },
     });
+
+    router.push({
+      pathname: "/posts",
+      query: { id: idUsuario },
+    });
   }
   return (
     <Fragment>

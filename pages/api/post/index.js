@@ -1,9 +1,6 @@
 import fs from "fs";
 
-import {
-  getArquivoPost,
-  getDadosPost,
-} from "../../../helpers/usuario/api-utils";
+import { getArquivoPost, getDadosPost } from "../../../helpers/post/api-utils";
 
 function handler(req, res) {
   const path = getArquivoPost();

@@ -1,15 +1,15 @@
 import path from "path";
 import fs from "fs";
 
-export function getArquivoPost() {
-  return path.join(process.cwd(), "data", "post.json");
+export function getArquivoUsuario() {
+  return path.join(process.cwd(), "data", "usuario.json");
 }
 
-export function getDadosPost(path) {
+export function getDadosUsuario(path) {
   return JSON.parse(fs.readFileSync(path));
 }
 
-export function getPostPorId(id) {
+export function getUsuarioPorId(id) {
   const usuarios = getDadosUsuario(getArquivoUsuario());
-  return usuarios.filter((p) => p.id == id)[0];
+  return usuarios.filter((u) => u.id == id)[0];
 }
