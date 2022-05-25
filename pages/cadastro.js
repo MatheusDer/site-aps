@@ -61,7 +61,7 @@ function CadastroPage() {
           ))}
           <Card body className="p-4 shadow-lg">
             <Card.Title>
-              <h1>Site APS</h1>
+              <h1>Reciclas</h1>
               <h2 className="mt-5">Cadastre-se</h2>
             </Card.Title>
             <Form className="mt-4" onSubmit={submitCadastroHandler}>
