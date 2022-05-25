@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import NavbarLayout from "../../components/layout/navbar";
 import { useRouter } from "next/router";
-import { Container, Card, Form, Row, Col } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Post from "../../components/post";
 
@@ -26,20 +25,7 @@ function PostsHomePage() {
   return (
     <Fragment>
       <NavbarLayout idUsuario={idUsuario} />
-      <Container className="mt-5 d-flex justify-content-center">
-        <Row>
-          {posts.map((post) => (
-            <Col xl={12}>
-              <Post
-                tenantId={post.tenantId}
-                imagem={post.imagem}
-                imagemId={post.imagemId}
-                descricao={post.descricao}
-              />
-            </Col>
-          ))}
-        </Row>
-      </Container>
+      <Post posts={posts} />
     </Fragment>
   );
 }

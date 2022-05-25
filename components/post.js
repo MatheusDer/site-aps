@@ -1,39 +1,23 @@
-import { useEffect, useState } from "react";
-import { Card, Form } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
+import PostItem from "./post-item";
 
 function Post(props) {
-  const [apelido, setApelido] = useState();
-  useEffect(() => {
-    fetch(`/api/usuario/${props.tenantId}`)
-      .then((r) => r.json())
-      .then((d) => {
-        setApelido(d.usuario.apelido);
-        console.log(d.usuario.apelido);
-      });
-  }, []);
-
+  const { posts } = props;
   return (
-    <Card className="shadow-lg w-75 mx-auto mb-5">
-      <Card.Title className="mt-2 mb-4">{apelido && apelido}</Card.Title>
-      <Card.Img variant="top" src={props.imagem} style={{ height: "30rem" }} />
-      <Card.Body>
-        <Card.Text className="mt-3 text-muted">{props.descricao}</Card.Text>
-        <div className="d-flex justify-content-end">
-          <Form>
-            <input
-              type="checkbox"
-              class="btn-check"
-              id={props.imagemId} //TODO
-              autocomplete="off"
+    <Container className="mt-5 d-flex justify-content-center">
+      <Row>
+        {posts.map((post) => (
+          <Col xl={12}>
+            <PostItem
+              tenantId={post.tenantId}
+              imagem={post.imagem}
+              imagemId={post.imagemId}
+              descricao={post.descricao}
             />
-            <label class="btn btn-outline-danger" htmlFor={props.imagemId}>
-              <i class="bi bi-heart"></i>
-            </label>
-            <br />
-          </Form>
-        </div>
-      </Card.Body>
-    </Card>
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 }
 
