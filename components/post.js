@@ -15,11 +15,7 @@ function Post(props) {
   return (
     <Card className="shadow-lg w-75 mx-auto mb-5">
       <Card.Title className="mt-2 mb-4">{apelido && apelido}</Card.Title>
-      <Card.Img
-        variant="top"
-        src={props.imagem}
-        style={{ maxHeight: "900px" }}
-      />
+      <Card.Img variant="top" src={props.imagem} style={{ height: "30rem" }} />
       <Card.Body>
         <Card.Text className="mt-3 text-muted">{props.descricao}</Card.Text>
         <div className="d-flex justify-content-end">
@@ -27,7 +23,7 @@ function Post(props) {
             <input
               type="checkbox"
               class="btn-check"
-              id="btn-check-outlined"
+              id={props.idImagem} //TODO
               autocomplete="off"
             />
             <label class="btn btn-outline-danger" htmlFor="btn-check-outlined">
