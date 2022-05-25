@@ -9,7 +9,9 @@ function PostItem(props) {
     fetch(`/api/usuario/${props.tenantId}`)
       .then((r) => r.json())
       .then((d) => {
-        setApelido(d.usuario.apelido);
+        if (d.usuario) {
+          setApelido(d.usuario.apelido);
+        }
       });
 
     fetch(`/api/post/${props.idUsuario}/${props.imagemId}`, {})
@@ -25,8 +27,6 @@ function PostItem(props) {
     })
       .then((r) => r.json())
       .then((d) => setFavorito(d.favorito));
-
-    console.log("click");
   }
 
   if (!apelido) {
@@ -43,14 +43,14 @@ function PostItem(props) {
           <Form>
             <input
               type="checkbox"
-              class="btn-check"
+              className="btn-check"
               id={props.imagemId}
-              autocomplete="off"
+              autoComplete="off"
               onChange={clickHandler}
               checked={isFavorito}
             />
-            <label class="btn btn-outline-danger" htmlFor={props.imagemId}>
-              <i class="bi bi-heart"></i>
+            <label className="btn btn-outline-danger" htmlFor={props.imagemId}>
+              <i className="bi bi-heart"></i>
             </label>
             <br />
           </Form>

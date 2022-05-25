@@ -11,7 +11,7 @@ function Post(props) {
     <Container className="mt-5 d-flex justify-content-center">
       <Row>
         {posts.map((post) => (
-          <Col xl={12}>
+          <Col xl={12} key={post.imagemId}>
             <PostItem
               idUsuario={props.idUsuario}
               tenantId={post.tenantId}
