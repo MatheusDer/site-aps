@@ -17,10 +17,16 @@ function ProfilePage() {
         setUsuario(data.usuario);
       });
     useEffect(() => {
-      fetch(`/api/post/criados/${router.query.idUsuario}`)
-        .then((r) => r.json())
-        .then((d) => setPosts(d.posts));
-    }, [key === "posts"]);
+      if (key == "posts") {
+        fetch(`/api/post/criados/${router.query.idUsuario}`)
+          .then((r) => r.json())
+          .then((d) => setPosts(d.posts));
+      } else if (key == "favoritos") {
+        fetch(`/api/post/${router.query.idUsuario}`)
+          .then((r) => r.json())
+          .then((d) => setPosts(d.posts));
+      }
+    }, [key]);
   }
 
   if (!usuario || !posts) {
@@ -41,20 +47,21 @@ function ProfilePage() {
           {usuario.email}
         </p>
       </div>
-
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={key}
-        onSelect={(k) => setKey(k)}
-        className="mb-3"
-      >
-        <Tab eventKey="posts" title="Posts">
-          <Post posts={posts} />
-        </Tab>
-        <Tab eventKey="favoritos" title="Favoritos">
-          <p>Loading...</p>;
-        </Tab>
-      </Tabs>
+      <Fragment>
+        <Tabs
+          id="controlled-tab-example"
+          activeKey={key}
+          onSelect={(k) => setKey(k)}
+          className="mb-3"
+        >
+          <Tab eventKey="posts" title="Posts">
+            <Post posts={posts} idUsuario={usuario.id} />
+          </Tab>
+          <Tab eventKey="favoritos" title="Favoritos">
+            <Post posts={posts} idUsuario={usuario.id} />
+          </Tab>
+        </Tabs>
+      </Fragment>
     </Fragment>
   );
 }

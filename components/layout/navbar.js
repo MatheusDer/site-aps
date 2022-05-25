@@ -5,11 +5,13 @@ function NavbarLayout(props) {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/posts">Site APS</Navbar.Brand>
+        <Navbar.Brand href={`/posts?id=${props.idUsuario}`}>
+          Site APS
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Link href="/posts">
+            <Link href={`/posts?id=${props.idUsuario}`}>
               <a className="me-4 nav-link">Home</a>
             </Link>
             <Link href={`/usuario/${props.idUsuario}`}>
@@ -17,9 +19,6 @@ function NavbarLayout(props) {
             </Link>
             <Link href={`/criar-post/${props.idUsuario}`}>
               <a className="me-4 nav-link">Criar Post</a>
-            </Link>
-            <Link href="/sobre">
-              <a className="me-4 nav-link">Sobre</a>
             </Link>
           </Nav>
         </Navbar.Collapse>

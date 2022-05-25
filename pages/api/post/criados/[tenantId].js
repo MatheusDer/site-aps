@@ -5,7 +5,7 @@ function handler(req, res) {
   const post = getPostsPorTenantId(id);
 
   if (post) {
-    res.status(200).json({ posts: post });
+    return res.status(200).json({ posts: post });
   }
 
   res.status(404).json({ msg: "o post nao existe" });

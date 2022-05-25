@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import NavbarLayout from "../../components/layout/navbar";
 import { useRouter } from "next/router";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import Post from "../../components/post";
 
 function PostsHomePage() {
@@ -24,8 +23,8 @@ function PostsHomePage() {
 
   return (
     <Fragment>
-      <NavbarLayout idUsuario={idUsuario} />
-      <Post posts={posts} />
+      <NavbarLayout idUsuario={idUsuario && idUsuario} />
+      <Post posts={posts} idUsuario={idUsuario} />
     </Fragment>
   );
 }

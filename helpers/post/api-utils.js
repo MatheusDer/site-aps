@@ -11,7 +11,7 @@ export function getDadosPost(path) {
 
 export function getPostsPorImagemId(id) {
   const posts = getDadosPost(getArquivoPost());
-  return posts.filter((p) => p.idImagem == id);
+  return posts.filter((p) => p.imagemId == id);
 }
 
 export function getPostsPorTenantId(id) {
