@@ -8,7 +8,6 @@ function PostItem(props) {
       .then((r) => r.json())
       .then((d) => {
         setApelido(d.usuario.apelido);
-        console.log(d.usuario.apelido);
       });
   }, []);
 

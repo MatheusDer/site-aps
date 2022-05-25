@@ -9,7 +9,12 @@ export function getDadosPost(path) {
   return JSON.parse(fs.readFileSync(path));
 }
 
-export function getPostPorId(id) {
-  const usuarios = getDadosUsuario(getArquivoUsuario());
-  return usuarios.filter((p) => p.id == id)[0];
+export function getPostsPorImagemId(id) {
+  const posts = getDadosPost(getArquivoPost());
+  return posts.filter((p) => p.idImagem == id);
+}
+
+export function getPostsPorTenantId(id) {
+  const posts = getDadosPost(getArquivoPost());
+  return posts.filter((p) => p.tenantId == id);
 }
