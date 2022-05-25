@@ -4,7 +4,7 @@ import NavbarLayout from "../../../components/layout/navbar";
 import { Tabs, Tab, Row, Col, Button } from "react-bootstrap";
 import Post from "../../../components/post";
 
-function ProfilePage() {
+function Favoritos() {
   const router = useRouter();
   const [usuario, setUsuario] = useState();
   const [key, setKey] = useState("posts");
@@ -17,14 +17,10 @@ function ProfilePage() {
         .then((data) => {
           setUsuario(data.usuario);
         });
-      fetch(`/api/post/criados/${router.query.idUsuario}`)
+
+      fetch(`/api/post/${router.query.idUsuario}`)
         .then((r) => r.json())
         .then((d) => setPosts(d.posts));
-      // } else if (key == "favoritos") {
-      //   fetch(`/api/post/${router.query.idUsuario}`)
-      //     .then((r) => r.json())
-      //     .then((d) => setPosts(d.posts));
-      // }
     }
   }, [key]);
 
@@ -32,10 +28,10 @@ function ProfilePage() {
     return <p>Loading...</p>;
   }
 
-  function clickFavoritosHandler(event) {
+  function clickPostsHandler(event) {
     event.preventDefault();
 
-    router.push(`/usuario/${usuario.id}/favoritos`);
+    router.push(`/usuario/${usuario.id}`);
   }
 
   return (
@@ -54,12 +50,12 @@ function ProfilePage() {
       </div>
       <Row className="d-flex justify-content-center mt-5">
         <Col xl={4}>
-          <Button className="w-100" active>
+          <Button className="w-100" onClick={clickPostsHandler}>
             Posts
           </Button>
         </Col>
         <Col xl={4}>
-          <Button className="w-100" onClick={clickFavoritosHandler}>
+          <Button className="w-100" active>
             Favoritos
           </Button>
         </Col>
@@ -69,4 +65,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default Favoritos;

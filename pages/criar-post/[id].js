@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useRef } from "react";
 import {
   Container,
   Card,
@@ -38,10 +38,7 @@ function CreatePost() {
       },
     });
 
-    router.push({
-      pathname: "/posts",
-      query: { id: idUsuario },
-    });
+    router.push(`/posts?id=${idUsuario}`);
   }
   return (
     <Fragment>
