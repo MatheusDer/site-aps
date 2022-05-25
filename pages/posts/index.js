@@ -33,6 +33,7 @@ function PostsHomePage() {
               <Post
                 tenantId={post.tenantId}
                 imagem={post.imagem}
+                imagemId={post.imagemId}
                 descricao={post.descricao}
               />
             </Col>

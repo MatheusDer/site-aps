@@ -23,10 +23,10 @@ function Post(props) {
             <input
               type="checkbox"
               class="btn-check"
-              id={props.idImagem} //TODO
+              id={props.imagemId} //TODO
               autocomplete="off"
             />
-            <label class="btn btn-outline-danger" htmlFor="btn-check-outlined">
+            <label class="btn btn-outline-danger" htmlFor={props.imagemId}>
               <i class="bi bi-heart"></i>
             </label>
             <br />
